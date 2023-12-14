@@ -12,7 +12,7 @@ public class CountWords {
 	public static void main(String[] args) {
 		Scanner scan=new Scanner(System.in);
 		System.out.println("Enter Student's Article: ");
-		String article=scan.nextLine();
+		String article=scan.nextLine().toLowerCase();
 		
 		String[] words=article.split("[,;:.?! ]+");
 		
@@ -23,10 +23,14 @@ public class CountWords {
 	        
 	        for (String word : words) 
 	        {
-	            String wod=word.toLowerCase();
-	            wordCounts.put(wod, wordCounts.getOrDefault(wod,0)+1);
-                
-	            
+			if (!wordCounts.containsKey(word)) {
+
+				wordCounts.put(word, 1);
+			} else {
+				wordCounts.put(word, wordCounts.get(word) + 1);
+			}   
+
+			
 	        }
 	        System.out.println();
 	        System.out.println("Words with the count");
@@ -38,21 +42,8 @@ public class CountWords {
 	}
 
 }
-/*
- Set<String> nDWords=new HashSet<>();
-		
-		for (String str : words) 
-		{
-			String str1=str.toLowerCase();
-			nDWords.add(str1);
-		}
-		
-		
-		String article=scan.nextLine().toLowerCase();
-if (!wordCounts.containsKey(word)) {
+/* Method-2:-
 
-				wordCounts.put(word, 1);
-			} else {
-				wordCounts.put(word, wordCounts.get(word) + 1);
-			}
+  String wod=word.toLowerCase();
+  wordCounts.put(wod, wordCounts.getOrDefault(wod,0)+1);
 }*/
